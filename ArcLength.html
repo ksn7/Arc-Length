@@ -54,11 +54,11 @@ def arc_length( f = input_box( default = x^2, label = "function", width = 20),
     graph = graph_f + segments
     graph.show()
     
-    length = n(integral( sqrt( 1 + (derivative(f, x))^2 ), x, lower, upper))
+    length = numerical_integral( sqrt( 1 + diff(f,x)^2 ), lower, upper)
     
     print "The approximate length of the arc based on the segments is " + str(seg_length)
-    print "The actual length of the arc is " + str(length)
-    
+    print "The actual length of the arc, accurate to 11 decimal places, is " + str(length[0])
+
 
 </script>
 </div>
