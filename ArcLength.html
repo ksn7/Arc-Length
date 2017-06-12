@@ -27,7 +27,6 @@ $(function () {
 <div class="compute">
 <script type="text/x-sage">
 
-
 @interact(layout = [ ['func', 'num'], ['lower', 'upper'] ])
 def arc_length( func = input_box( default = x^2, label = "function", width = 20), 
         lower = input_box( default = 0, label = "lower bound", width = 5), 
@@ -56,16 +55,18 @@ def arc_length( func = input_box( default = x^2, label = "function", width = 20)
     graph = graph_f + segments
     graph.show()
     
-    length = numerical_integral( sqrt( 1 + diff(f,x)^2 ), lower, upper)
+    (length, precision) = numerical_integral( sqrt( 1 + diff(f,x)^2 ), lower, upper)
+    j=0
+    while precision <= 10^-j:
+        j += 1
     
     print "The approximate length of the arc based on the segments is " + str(seg_length)
-    print "The actual length of the arc, accurate to 11 decimal places, is " + str(length[0])
-
+    print "The actual length of the arc, accurate to " + str(j) + " decimal places, is " + str(length)
 
 </script>
 </div>
 
 <hr>
-Last modified on June 9th, 2017.
+Last modified on June 12th, 2017.
 </body>
 </html>
