@@ -45,12 +45,16 @@ $(function () {
 <script type="text/x-sage">
 
 @interact(layout = [ ['func', 'num'], ['lower', 'upper'] ])
-def arc_length( func = input_box( default = x^2, label = "f(x) = ", width = 20), 
-        lower = input_box( default = 0, label = "a", width = 5), 
-        upper = input_box( default = 2, label = "b", width = 5), 
+def arc_length( func = input_box( default = x^2, label = "$f(x) = $", width = 20), 
+        lower = input_box( default = 0, label = "$a$", width = 5), 
+        upper = input_box( default = 2, label = "$b$", width = 5), 
         num = input_box( default = 4, label = "number of segments", width = 20) ):
 
+    # Avoid the deprecation warning
     f = func.function(x)
+
+    # Set the preferred number of digits to print
+    num_digits = 7
 
     # Define a distance function inside the main function
     def distance2d( (x1, y1), (x2, y2) ):
@@ -77,12 +81,12 @@ def arc_length( func = input_box( default = x^2, label = "f(x) = ", width = 20),
     while precision <= 10^-j:
         j += 1
     
-    pretty_print( "The approximate length of the arc based on the segments is " + str(seg_length) + "\nThe actual length of the arc, accurate to " + str(j) + " decimal places, is " + str(length) )
+    pretty_print( "The approximate length of the arc based on the segments is " + str(n(seg_length, digits = num_digits)) + "\nThe actual length of the arc, accurate to " + str(j) + " decimal places, is " + str(n(length, digits = num_digits)) )
 
 </script>
 </div>
 
 <hr>
-Last modified on July 24th, 2017.
+Last modified on August 15th, 2017.
 </body>
 </html>
